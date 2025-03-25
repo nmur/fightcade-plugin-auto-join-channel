@@ -1,8 +1,4 @@
-const CONFIG = {
-    channel: {
-        id: '',
-    }
-};
+const config = require('./config.json');
 
 module.exports = (FCADE) => { runPlugin(FCADE) };
 
@@ -16,8 +12,8 @@ const connectToFirstChannelWhenAvailable = (FCADE) => {
         if (FCADE.initializingApp == !1) {
             clearInterval(checkInterval);
             
-            if (CONFIG.channel.id) {
-                connectToChannel(FCADE, CONFIG.channel.id);
+            if (config.channel.id) {
+                connectToChannel(FCADE, config.channel.id);
             }
             else {
                 connectToFirstChannel(FCADE);
