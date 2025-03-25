@@ -14,7 +14,9 @@ To get the full name, you can go to your Fightcade profile page and click on a g
 
 Add the following to the `plugins\config.json`:
 ```json
-"channel": {
-    "id" : "Street Fighter III 3rd Strike: Fight for the Future (Japan 990512, NO CD)",
+{
+    "channel": {
+        "id" : "Street Fighter III 3rd Strike: Fight for the Future (Japan 990512, NO CD)",
+    }
 }
 ```
