@@ -2,18 +2,26 @@ const config = require('./config.json');
 
 module.exports = (FCADE) => { runPlugin(FCADE) };
 
+const defaultConfig = {
+    id: '',
+};
+
 const runPlugin = (FCADE) => {
-    // Plugin code goes here
-    connectToFirstChannelWhenAvailable(FCADE);
+// Plugin code goes here
+    connectToChannelWhenAvailable(FCADE, config.autoJoinChannel);
 }
 
-const connectToFirstChannelWhenAvailable = (FCADE) => {
+const connectToChannelWhenAvailable = (FCADE, channelConfig) => {
+    if (!channelConfig) {
+        channelConfig = defaultConfig
+    }
+
     const checkInterval = setInterval(() => {
         if (FCADE.initializingApp == !1) {
             clearInterval(checkInterval);
             
-            if (config.channel.id) {
-                connectToChannel(FCADE, config.channel.id);
+            if (channelConfig.id) {
+                connectToChannel(FCADE, channelConfig.id);
             }
             else {
                 connectToFirstChannel(FCADE);
@@ -23,14 +31,14 @@ const connectToFirstChannelWhenAvailable = (FCADE) => {
 };
 
 const connectToFirstChannel = (FCADE) => {
-    const gameChannels = FCADE.channels.filter(channel => 'gameid' in channel);
-    
-    if (gameChannels.length > 0) {
-        connectToChannel(FCADE, gameChannels[0].id);
-    }
+const gameChannels = FCADE.channels.filter(channel => 'gameid' in channel);
+
+if (gameChannels.length > 0) {
+    connectToChannel(FCADE, gameChannels[0].id);
+}
 }
 
 function connectToChannel(FCADE, channelId) {
-    FCADE.selectChannel(channelId);
+FCADE.selectChannel(channelId);
 }
 
