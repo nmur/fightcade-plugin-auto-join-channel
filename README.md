@@ -12,10 +12,9 @@ By default, the plugin will select the first channel, but you can specify a cert
   
 To get the full name, you can go to your Fightcade profile page and click on a game's screenshot to navigate to it's Fightcade page ([example](https://www.fightcade.com/game/sfiii3nr1)).
 
-```js
-const CONFIG = {
-    channel: {
-        id: 'Street Fighter III 3rd Strike: Fight for the Future (Japan 990512, NO CD)',
-    }
-};
+Add the following to the `plugins\config.json`:
+```json
+"channel": {
+    "id" : "Street Fighter III 3rd Strike: Fight for the Future (Japan 990512, NO CD)",
+}
 ```
